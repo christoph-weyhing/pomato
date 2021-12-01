@@ -654,3 +654,17 @@ class Results():
         self.logger.info("Done")
 
         return agg_info, n_1_overload
+    
+    def export_dieter_prosumage(self):
+        name = self.result_attributes['name']
+        res_split = name.split('_')
+        res_id = '_'.join(res_split[:3])
+        folder = self.data.wdir.joinpath('data_output/'+res_id)
+        if not folder.is_dir():
+            folder.mkdir()
+        # prices_path = str(folder)+'/prices_'+name+'.csv'
+        prices_path = folder.joinpath('prices_'+name)
+        self.price().to_csv(prices_path)
+        nodes_path = folder.joinpath('nodes.csv')
+        if not nodes_path.is_file():
+            self.data.nodes.to_csv(nodes_path)
