@@ -1,0 +1,11 @@
+{
+  "COST_INFEASIBILITY_EL": 0.0,
+  "COST_INFEASIBILITY_H": 0.0,
+  "Objective Value": 93152.37701702489,
+  "COST_H": 0,
+  "COST_EX": 0.0,
+  "COST_G": 93152.37701702489,
+  "COST_CURT": 0.0,
+  "COST_REDISPATCH": 0.0,
+  "Solve Status": "OPTIMAL"
+}

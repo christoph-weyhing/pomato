@@ -1,0 +1,27 @@
+
+Gurobi 9.1.2 (win64) logging started Thu Aug 19 15:17:30 2021
+
+
+Gurobi 9.1.2 (win64) logging started Thu Aug 19 15:17:39 2021
+
+Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (win64)
+Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
+Optimize a model with 139 rows, 374 columns and 765 nonzeros
+Model fingerprint: 0x16c203b9
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+02]
+  Bounds range     [2e+01, 2e+01]
+  RHS range        [2e+00, 4e+03]
+Presolve removed 138 rows and 351 columns
+Presolve time: 0.01s
+Presolved: 1 rows, 23 columns, 23 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   5.302500e+02   0.000000e+00      0s
+       1    9.3026730e+04   0.000000e+00   0.000000e+00      0s
+
+Solved in 1 iterations and 0.02 seconds
+Optimal objective  9.302672955e+04
+
+User-callback calls 36, time in user-callback 0.00 sec

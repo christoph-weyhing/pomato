@@ -1,0 +1,34 @@
+
+Gurobi 9.1.2 (win64) logging started Thu Aug 19 15:17:51 2021
+
+
+Gurobi 9.1.2 (win64) logging started Thu Aug 19 15:17:52 2021
+
+Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (win64)
+Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
+Optimize a model with 630 rows, 864 columns and 2186 nonzeros
+Model fingerprint: 0xe2c918f7
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+04]
+  Objective range  [1e+00, 1e+02]
+  Bounds range     [2e+01, 7e+03]
+  RHS range        [2e+00, 4e+03]
+
+Concurrent LP optimizer: primal simplex, dual simplex, and barrier
+Showing barrier log only...
+
+Presolve removed 474 rows and 471 columns
+Presolve time: 0.01s
+Presolved: 156 rows, 393 columns, 1130 nonzeros
+
+Ordering time: 0.00s
+
+Barrier performed 0 iterations in 0.02 seconds
+Barrier solve interrupted - model solved by another algorithm
+
+
+Solved with dual simplex
+Solved in 101 iterations and 0.02 seconds
+Optimal objective  9.315237702e+04
+
+User-callback calls 46, time in user-callback 0.00 sec

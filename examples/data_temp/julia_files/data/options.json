@@ -1,0 +1,72 @@
+{
+  "title": "default",
+  "type": "dispatch",
+  "model_horizon": [
+    0,
+    1
+  ],
+  "heat_model": false,
+  "constrain_nex": false,
+  "timeseries": {
+    "split": true,
+    "market_horizon": 1000,
+    "redispatch_horizon": 24
+  },
+  "redispatch": {
+    "include": false,
+    "zonal_redispatch": false,
+    "zones": [],
+    "cost": 1
+  },
+  "curtailment": {
+    "include": false,
+    "cost": 100.0
+  },
+  "chance_constrained": {
+    "include": false,
+    "fixed_alpha": true,
+    "cc_res_mw": 50,
+    "alpha_plants_mw": 200
+  },
+  "parameters": {
+    "storage_start": 0.65
+  },
+  "infeasibility": {
+    "heat": {
+      "include": false,
+      "cost": 1000.0,
+      "bound": 20
+    },
+    "electricity": {
+      "include": true,
+      "cost": 100.0,
+      "bound": 20
+    }
+  },
+  "plant_types": {
+    "es": [],
+    "hs": [],
+    "ts": [],
+    "ph": []
+  },
+  "grid": {
+    "redundancy_removal_option": "clarkson_base",
+    "precalc_filename": "",
+    "sensitivity": 0.05,
+    "capacity_multiplier": 1,
+    "preprocess": true
+  },
+  "fbmc": {
+    "gsk": "gmax",
+    "minram": 0,
+    "flowbased_region": [],
+    "cne_sensitivity": 0.05,
+    "lodf_sensitivity": 0.05,
+    "frm": 0,
+    "reduce": false,
+    "enforce_ntc_domain": false
+  },
+  "data": {
+    "result_copy": false
+  }
+}

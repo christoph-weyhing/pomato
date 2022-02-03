@@ -1,0 +1,293 @@
+19.08.2021 15:16 - log.pomato - INFO - Creating Folder Structure
+19.08.2021 15:16 - log.pomato - INFO - creating folder data_output
+19.08.2021 15:16 - log.pomato - INFO - creating folder data_temp
+19.08.2021 15:16 - log.pomato - INFO - creating folder data_temp/julia_files
+19.08.2021 15:16 - log.pomato - INFO - creating folder data_temp/julia_files/data
+19.08.2021 15:16 - log.pomato - INFO - creating folder data_temp/julia_files/results
+19.08.2021 15:16 - log.pomato - INFO - creating folder data_temp/julia_files/cbco_data
+19.08.2021 15:16 - log.pomato.data.DataManagement - INFO - Initializing DataObject
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Initializing the GridTopology....
+19.08.2021 15:16 - log.pomato.market_model.MarketModel - INFO - Initializing MarketModel...
+19.08.2021 15:16 - log.pomato.fbmc.FBMCModule - INFO - Initializing the FBMCModule....
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Initializing the GridTopology....
+19.08.2021 15:16 - log.pomato - INFO - POMATO initialized!
+19.08.2021 15:16 - log.pomato.data.DataWorker - INFO - Loading data from matpower .m case-file
+19.08.2021 15:16 - log.pomato.data.DataWorker - INFO - Slackbus read as 69
+19.08.2021 15:16 - log.pomato.data.DataManagement - INFO - Validating Input Data...
+19.08.2021 15:16 - log.pomato.data.DataManagement - WARNING - Data validation completed with warnings. See the .data_validation_report.
+19.08.2021 15:16 - log.pomato.data.DataManagement - WARNING - Some data was initialized empty. See model_validation_report.
+19.08.2021 15:16 - log.pomato.data.DataManagement - WARNING - Some data missing or contained NaNs. See model_validation_report.
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Calculating grid parameters!
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - The network consists of 1 components. Setting slack for each.
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Calculating PTDF and PSDF matrices!
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Checking GridTopology...
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Radial nodes: Contingency of 7 lines is set to false
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Radial lines: Contingency of 2 lines is set to false
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Total number of lines and contingencies: 186, 177
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Calculating LODF matrix!
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Calculating contingency groups!
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - Grid parameters Calculated!
+19.08.2021 15:16 - log.pomato.grid.GridTopology - INFO - No grid representation needed for dispatch model
+19.08.2021 15:16 - log.pomato.market_model.MarketModel - INFO - Start-Time: 15:16:07
+19.08.2021 15:16 - log.pomato.market_model.MarketModel - INFO - Loading Gurobi...
+19.08.2021 15:16 - log.pomato.market_model.MarketModel - INFO - Initialized
+19.08.2021 15:16 - log.pomato.market_model.MarketModel - INFO - reading from file c:\users\cw\repositories\pomato_cw\pomato/daemon_market_model.json
+19.08.2021 15:16 - log.pomato.market_model.MarketModel - INFO - Done with Initialization. Starting daemon process market_model!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Process ready!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Loading Gurobi...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Starting with market_model
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Run market model
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - No logfile Found, logging only to console.
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Read Model Data..
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Reading Model Data from: C:\Users\cw\repositories\pomato_cw\examples/data_temp/julia_files/data/
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Data Prepared
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Creating Results Folder
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Initializing Market Model for timestep t0001...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Academic license - for non-commercial use only - expires 2021-10-04
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Adding Variables and Expressions..
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Add Base Model
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Adding Objective Function...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Solving...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (win64)
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Optimize a model with 139 rows, 374 columns and 765 nonzeros
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Model fingerprint: 0x16c203b9
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Coefficient statistics:
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Matrix range     [1e+00, 1e+00]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Objective range  [1e+00, 1e+02]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Bounds range     [2e+01, 2e+01]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - RHS range        [2e+00, 4e+03]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Presolve removed 138 rows and 351 columns
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Presolve time: 0.01s
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Presolved: 1 rows, 23 columns, 23 nonzeros
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 0    0.0000000e+00   5.302500e+02   0.000000e+00      0s
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 1    9.3026730e+04   0.000000e+00   0.000000e+00      0s
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Solved in 1 iterations and 0.02 seconds
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Optimal objective  9.302672955e+04
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - User-callback calls 36, time in user-callback 0.00 sec
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 7.470186 seconds (17.31 M allocations: 889.365 MiB, 4.65% gc time)
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Termination Status: OPTIMAL
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Objective: 93026.729546
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Optimization Status: OPTIMAL
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Solvetime: 7.77 seconds
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Model Done!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Saving results to folder C:\Users\cw\repositories\pomato_cw\examples/data_temp/julia_files/results/1908_1517_29559...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - All Results Saved!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Everything Done!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Done with market model.
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Program Done
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - End-Time: 15:17:50
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Total Time: 102.81095 sec
+19.08.2021 15:17 - log.pomato.data.Results - WARNING - EB_heat not in results folder 1908_1517_29559
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Estimated size in RAM for A is: 3.970464 MB
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Done Calculating N-1 Flows
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Processing Flows
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Done
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Start-Time: 15:17:50
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Process ready!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Loading Gurobi...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Starting with market_model
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Run market model
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - No logfile Found, logging only to console.
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Read Model Data..
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Reading Model Data from: C:\Users\cw\repositories\pomato_cw\examples/data_temp/julia_files/data/
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Data Prepared
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Creating Results Folder
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Initializing Market Model for timestep t0001...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Academic license - for non-commercial use only - expires 2021-10-04
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Adding Variables and Expressions..
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Add Base Model
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Adding power flow constraints using the angle formulation.
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Adding Objective Function...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Solving...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (win64)
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Optimize a model with 630 rows, 864 columns and 2186 nonzeros
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Model fingerprint: 0xe2c918f7
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Coefficient statistics:
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Matrix range     [1e+00, 5e+04]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Objective range  [1e+00, 1e+02]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Bounds range     [2e+01, 7e+03]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - RHS range        [2e+00, 4e+03]
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Concurrent LP optimizer: primal simplex, dual simplex, and barrier
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Showing barrier log only...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Presolve removed 474 rows and 471 columns
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Presolve time: 0.01s
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Presolved: 156 rows, 393 columns, 1130 nonzeros
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Ordering time: 0.00s
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Barrier performed 0 iterations in 0.02 seconds
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Barrier solve interrupted - model solved by another algorithm
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Solved with dual simplex
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Solved in 101 iterations and 0.02 seconds
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Optimal objective  9.315237702e+04
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - User-callback calls 46, time in user-callback 0.00 sec
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - 0.616080 seconds (1.04 M allocations: 53.135 MiB)
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Termination Status: OPTIMAL
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Objective: 93152.37701702489
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Optimization Status: OPTIMAL
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Solvetime: 0.62 seconds
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Model Done!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Saving results to folder C:\Users\cw\repositories\pomato_cw\examples/data_temp/julia_files/results/1908_1517_51305...
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - All Results Saved!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Everything Done!
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Done with market model.
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Program Done
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - End-Time: 15:17:52
+19.08.2021 15:17 - log.pomato.market_model.MarketModel - INFO - Total Time: 2.509993 sec
+19.08.2021 15:17 - log.pomato.data.Results - WARNING - EB_heat not in results folder 1908_1517_51305
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Estimated size in RAM for A is: 3.970464 MB
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Done Calculating N-1 Flows
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Processing Flows
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Done
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Precalculating and caching common results..
+19.08.2021 15:17 - log.pomato.data.Results - INFO - Done calculating common results.
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Estimated size in RAM for A is: 3.970464 MB
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Preprocessing Ab...
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Saving A, b...
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Saving A to disk...
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Saving b to disk...
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Saving x_bounds to disk...
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Saving I to disk...
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Saved everything to folder: 
+ C:\Users\cw\repositories\pomato_cw\examples\data_temp\julia_files\cbco_data
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Start-Time: 15:17:58
+19.08.2021 15:17 - log.pomato.grid.GridTopology - INFO - Loading Gurobi...
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - WARNING: using RedundancyRemoval.run_redundancy_removal in module Main conflicts with an existing identifier.
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - WARNING: using RedundancyRemoval.run_redundancy_removal_fbmc_domain in module Main conflicts with an existing identifier.
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - reading from file c:\users\cw\repositories\pomato_cw\pomato/daemon_redundancy_removal.json
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Done with Initialization. Starting daemon process redundancy_removal!
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Process ready!
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Loading Gurobi...
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Starting with redundancy_removal
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Run case py single threaded
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - No logfile Found, logging only to console.
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Reading A, b, x_bounds...
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Preprocessing...
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Removing duplicate rows...
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Removing all zero rows...
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Removed 67 rows in preprocessing!
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Starting with m size of length 4024
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Running sequential
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Starting Algorithm with I of size: 0
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - and with m of size: 4024
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Academic license - for non-commercial use only - expires 2021-10-04
+19.08.2021 15:18 - log.pomato.grid.GridTopology - INFO - Building Model with bounds on x!
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - ####                20%- Size of I 206 - Found Redundant 598 - Remaining 3220 - 19.08 - 15:19:08 on Thread: 1
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - ########            40%- Size of I 320 - Found Redundant 1289 - Remaining 2415 - 19.08 - 15:19:10 on Thread: 1
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - ############        60%- Size of I 400 - Found Redundant 2014 - Remaining 1610 - 19.08 - 15:19:13 on Thread: 1
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - ################    80%- Size of I 486 - Found Redundant 2733 - Remaining 805 - 19.08 - 15:19:16 on Thread: 1
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - Number of non-redundant constraints: 542
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - Writing File cbco_py_1908_1519_19526 ....
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - Everything Done!
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - Program Done
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - End-Time: 15:19:19
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - Total Time: 81.720701 sec
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - cbco list save for later use to: 
+cbco_py_1908_1519_19526.csv
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Start-Time: 15:19:20
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Process ready!
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Loading Gurobi...
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Starting with market_model
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Run market model
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - No logfile Found, logging only to console.
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Read Model Data..
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Reading Model Data from: C:\Users\cw\repositories\pomato_cw\examples/data_temp/julia_files/data/
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Data Prepared
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Creating Results Folder
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Initializing Market Model for timestep t0001...
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Academic license - for non-commercial use only - expires 2021-10-04
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Adding Variables and Expressions..
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Add Base Model
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Adding power flow constraints using the PTDF formulation.
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Adding Objective Function...
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Solving...
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (win64)
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Optimize a model with 1765 rows, 1458 columns and 63573 nonzeros
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Model fingerprint: 0x990c3b55
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Coefficient statistics:
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Matrix range     [6e-08, 1e+00]
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Objective range  [1e+00, 1e+02]
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Bounds range     [2e+01, 2e+01]
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - RHS range        [2e+00, 4e+03]
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Concurrent LP optimizer: primal simplex, dual simplex, and barrier
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Showing barrier log only...
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Presolve removed 1157 rows and 598 columns
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Presolve time: 0.06s
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Presolved: 608 rows, 860 columns, 55986 nonzeros
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Barrier performed 0 iterations in 0.07 seconds
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Barrier solve interrupted - model solved by another algorithm
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Solved with dual simplex
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Solved in 137 iterations and 0.07 seconds
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Optimal objective  1.251816995e+05
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - User-callback calls 43, time in user-callback 0.00 sec
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - 0.085525 seconds (151.60 k allocations: 6.891 MiB)
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Termination Status: OPTIMAL
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Objective: 125181.69946981141
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Optimization Status: OPTIMAL
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Solvetime: 0.09 seconds
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Model Done!
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Saving results to folder C:\Users\cw\repositories\pomato_cw\examples/data_temp/julia_files/results/1908_1519_20976...
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - All Results Saved!
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Everything Done!
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Done with market model.
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Program Done
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - End-Time: 15:19:21
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - Total Time: 1.865741 sec
+19.08.2021 15:19 - log.pomato.data.Results - WARNING - EB_heat not in results folder 1908_1519_20976
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - Estimated size in RAM for A is: 3.970464 MB
+19.08.2021 15:19 - log.pomato.data.Results - INFO - Done Calculating N-1 Flows
+19.08.2021 15:19 - log.pomato.data.Results - INFO - Processing Flows
+19.08.2021 15:19 - log.pomato.data.Results - INFO - Done
+19.08.2021 15:19 - log.pomato.data.Results - INFO - Precalculating and caching common results..
+19.08.2021 15:19 - log.pomato.data.Results - INFO - Done calculating common results.
+19.08.2021 15:19 - log.pomato.market_model.MarketModel - INFO - EXIT
+19.08.2021 15:19 - log.pomato.grid.GridTopology - INFO - EXIT
+19.08.2021 16:01 - log.pomato - INFO - Creating Folder Structure
+19.08.2021 16:01 - log.pomato.data.DataManagement - INFO - Initializing DataObject
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Initializing the GridTopology....
+19.08.2021 16:01 - log.pomato.market_model.MarketModel - INFO - Initializing MarketModel...
+19.08.2021 16:01 - log.pomato.fbmc.FBMCModule - INFO - Initializing the FBMCModule....
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Initializing the GridTopology....
+19.08.2021 16:01 - log.pomato - INFO - POMATO initialized!
+19.08.2021 16:01 - log.pomato.data.DataWorker - INFO - Loading data from matpower .m case-file
+19.08.2021 16:01 - log.pomato.data.DataWorker - INFO - Slackbus read as 69
+19.08.2021 16:01 - log.pomato.data.DataManagement - INFO - Validating Input Data...
+19.08.2021 16:01 - log.pomato.data.DataManagement - WARNING - Data validation completed with warnings. See the .data_validation_report.
+19.08.2021 16:01 - log.pomato.data.DataManagement - WARNING - Some data was initialized empty. See model_validation_report.
+19.08.2021 16:01 - log.pomato.data.DataManagement - WARNING - Some data missing or contained NaNs. See model_validation_report.
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Calculating grid parameters!
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - The network consists of 1 components. Setting slack for each.
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Calculating PTDF and PSDF matrices!
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Checking GridTopology...
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Radial nodes: Contingency of 7 lines is set to false
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Radial lines: Contingency of 2 lines is set to false
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Total number of lines and contingencies: 186, 177
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Calculating LODF matrix!
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Calculating contingency groups!
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - Grid parameters Calculated!
+19.08.2021 16:01 - log.pomato.grid.GridTopology - INFO - No grid representation needed for dispatch model
+19.08.2021 16:01 - log.pomato.market_model.MarketModel - INFO - Start-Time: 16:01:50
+19.08.2021 16:01 - log.pomato.market_model.MarketModel - INFO - Loading Gurobi...
+19.08.2021 16:02 - log.pomato.market_model.MarketModel - INFO - Initialized
+19.08.2021 16:02 - log.pomato.market_model.MarketModel - INFO - reading from file c:\users\cw\repositories\pomato_cw\pomato/daemon_market_model.json
+19.08.2021 16:02 - log.pomato.market_model.MarketModel - INFO - Done with Initialization. Starting daemon process market_model!
