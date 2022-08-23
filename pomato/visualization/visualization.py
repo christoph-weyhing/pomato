@@ -254,7 +254,7 @@ class Visualization():
             # Remove part of hovertemple related to lineflows
             hovertemplate_lines.replace("<br>N-0 Flow %{customdata[2]:.2f} MW<br>N-1 Flow %{customdata[3]:.2f} MW", "")
         else: # all gray
-            lines["colors"] = ["#737373" for i in lines.index]
+            lines["colors"] = ["#0000ff" for i in lines.index]
             lines["alpha"] = [.6 for i in lines.index]
             datacols = []
             # Remove part of hovertemple related to lineflows
@@ -465,7 +465,7 @@ class Visualization():
         else:
             return fig
 
-    def create_generation_plot(self, market_result, nodes=None, show_plot=True, filepath=None):
+    def create_generation_plot(self, market_result, nodes=None, show_plot=True, filepath=None, return_data=False):
         """Create interactive generation plot.
 
         The generation plot shows generation by fuel/type/technology over the model horizon for the 
@@ -544,8 +544,13 @@ class Visualization():
             fig.write_html(str(filepath))
         if show_plot:
             plot(fig)
+            if return_data:
+                return gen, demand
         else:
-            return fig
+            if return_data:
+                return fig, gen, demand
+            else:
+                return fig
 
     def create_available_intermittent_capacity_plot(self, data, zones=None, show_plot=True, filepath=None):
         """Visualize available intermittent generation capacities over time.
@@ -969,7 +974,8 @@ class Visualization():
         else:
             return fig
 
-    def create_generation_overview(self, market_results, zones=None, show_plot=True, filepath=None, return_data=False):
+    def create_generation_overview(self, market_results, zones=None, show_plot=True, filepath=None,
+                                   return_data=False, include_infeasibility=True):
         """Create generation overview of multiple model results. 
 
         Parameters
