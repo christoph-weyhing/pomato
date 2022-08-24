@@ -207,7 +207,7 @@ class MarketModel():
             for plant in tmp_storage_level[tmp_storage_level.storage_start != self.options["storages"]["storage_start"]].plant.unique():   
                 for group in timesteps.group.unique():  
                     condition = (tmp_storage_level.timestep.isin(timesteps[timesteps.group == group].index))&(tmp_storage_level.plant == plant)
-                    window=int(168/market_model_horizon)
+                    window=int(market_model_horizon/168)
                     tmp_storage_level.loc[condition, "storage_start"] = tmp_storage_level.loc[condition, "storage_start"].rolling(window, min_periods=1).mean()
                     tmp_storage_level.loc[condition, "storage_end"] = tmp_storage_level.loc[condition, "storage_end"].rolling(window, min_periods=1).mean()
 
