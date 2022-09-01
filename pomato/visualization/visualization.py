@@ -33,7 +33,8 @@ BASIC_FUEL_COLOR_MAP = {
         "waste": ["#000000", "#141510"],
         "other": ["#87959E", "#CCDAE3", "#B6C9D0", "#235E58", "#013531"],
         "wind": ["#6699AA", "#00303E", "#326775"],
-        "sun": ["#FFEB3C", "#F4E01D", "#EBD601"],
+        "sun": ["#FFF9AE", "#F8ED62", "#E9D700", "#DAB600", "#A98600"],
+        "electricity": ['#808080','#a0a0a0','#666666'],
         "infeasibility": ["#80DEF8", "#80DEF8"]
     }
 
@@ -62,6 +63,28 @@ def color_map(gen):
             color_df.loc[condition, "name"]  = color_df[condition].fuel
     color_df["name"] = color_df["name"].apply(tools.remove_duplicate_words_string)
     return color_df
+
+def add_variables_g_ovwv(market_result_dict, add_vars, zones):
+    add_gen = []        
+    for result_name, result in market_result_dict.items():
+        for k,v in add_vars.items():
+            try:
+                vals = getattr(result.data, k)
+                if 'zone' not in vals.columns:
+                    vals.loc[:,'zone'] = result.data.nodes.loc[vals.node,'zone'].to_numpy()
+                tmp_zones = list(set(zones).intersection(set(v['zones'])))
+                tmp_val = vals.loc[(vals.node.isin(v['nodes']))&(vals.zone.isin(tmp_zones)),k].sum()
+                tmp_var = pd.DataFrame({'fuel':[v['fuel']],
+                                        'technology':[v['technology']],
+                                        'result':[result_name],
+                                        'G':[tmp_val],
+                                        'delta_abs':[0],
+                                        'delta_pos':[0],
+                                        'delta_neg':[0]})
+                add_gen.append(tmp_var)
+            except AttributeError:
+                continue
+    return pd.concat(add_gen)
 
 class Visualization():
     """
@@ -969,7 +992,7 @@ class Visualization():
         else:
             return fig
 
-    def create_generation_overview(self, market_results, zones=None, show_plot=True, filepath=None, return_data=False):
+    def create_generation_overview(self, market_results, add_variables=None, zones=None, show_plot=True, filepath=None, return_data=False):
         """Create generation overview of multiple model results. 
 
         Parameters
@@ -1021,7 +1044,14 @@ class Visualization():
             tmp = tmp[cols].groupby(["fuel", "technology", "result"], observed=True).sum().reset_index()
             gen.append(tmp)
 
-        gen = pd.concat(gen)    
+        gen = pd.concat(gen)
+        
+        ######
+        if add_variables is not None:
+            add_gen = add_variables_g_ovwv(market_result_dict, add_variables, zones)
+            gen = pd.concat([gen,add_gen], ignore_index=True)
+        ######
+        
         names = color_map(gen)
 
         gen.loc[:, ["G", "delta_abs", "delta_pos", "delta_neg"]] /= 1000
