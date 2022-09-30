@@ -86,6 +86,73 @@ def add_variables_g_ovwv(market_result_dict, add_vars, zones):
                 continue
     return pd.concat(add_gen)
 
+# market_result_dict = {'FIX0_RTP_nodal':results['FIX0_RTP_nodal']}
+# result_name = 'FIX0_RTP_nodal'
+# result = results['FIX0_RTP_nodal']
+# k = 'g_self'
+# v = add_vars[k]
+def add_variables_g(market_result, add_vars, nodes):
+    add_gen = []        
+    for k,v in add_vars.items():
+        try:
+            vals = getattr(market_result.data, k)
+            # if 'zone' not in vals.columns:
+            #     vals.loc[:,'zone'] = market_result.data.nodes.loc[vals.node,'zone'].to_numpy()
+            # tmp_zones = list(set(zones).intersection(set(v['zones'])))
+            # tmp_val = vals.loc[(vals.node.isin(v['nodes']))&(vals.zone.isin(tmp_zones)),:]
+            if nodes is None:
+                nodes = list(market_result.data.nodes.index)
+            tmp_val = vals.loc[vals.node.isin(nodes),:]
+            tmp_var = tmp_val.groupby('timestep')[k].sum().reset_index()
+            tmp_var.rename(columns={'timestep':'t',k:'G'}, inplace=True)
+            tmp_var['fuel'] = add_vars[k]['fuel']
+            tmp_var['technology'] = add_vars[k]['technology']
+            tmp_var['g_max'] = tmp_var['G'].max()
+            add_gen.append(tmp_var)
+        except AttributeError:
+            continue
+    return pd.concat(add_gen)
+
+def net_position_plot(market_results, show_plot=True):
+    # Imports are negative, exports are positive
+    data = list()
+    for res in market_results:
+        net_position = res.net_position().sum(axis=0)
+        net_position = net_position.reset_index().rename(columns={'index':'zone',0:'value'})
+        net_position['scenario'] = res.result_attributes['title']
+        data.append(net_position)
+    net_position = pd.concat(data)
+    fig = px.bar(net_position, x='scenario', y='value', color='zone')
+    fig.layout.xaxis.title="Scenario"
+    fig.layout.yaxis.title="Net position (Exp. pos., Imp. neg.) [MWh]"
+    fig.layout.title = "Sum over net position"
+    if show_plot:
+        plot(fig)
+    else:
+        return fig
+    
+def exchange_overview_plot(market_results, show_plot=True):
+    data = list()
+    for res in market_results:
+        ex = pd.DataFrame(res.EX.copy())
+        ex['import'] = ex.loc[:,'EX'].to_numpy()
+        ex.loc[ex['import']<0,'import'] = 0
+        ex['export'] = ex.loc[:,'EX'].to_numpy()
+        ex.loc[ex['export']>0,'export'] = 0
+        ex = ex.groupby(['z','zz'])['import','export'].sum(axis=0)
+        data.append(ex)
+    exchange = pd.concat(data)
+    exchange = exchange.melt()
+    fig = px.bar(exchange, x='scenario', y='value', color='zone')
+    fig.layout.xaxis.title="Scenario"
+    fig.layout.yaxis.title="Net position [MWh]"
+    fig.layout.title = "Sum over net position"
+    if show_plot:
+        plot(fig)
+    else:
+        return fig
+    
+    
 class Visualization():
     """
     The visualization module of Pomato bundles processing and plotting methods to visualize pomato results.
@@ -98,7 +165,7 @@ class Visualization():
         self.logger = logging.getLogger('Log.pomato.visualization.Visualization')
         self.wdir = wdir
 
-    def create_geo_plot(self, market_result, 
+    def create_geo_plot(self, market_result, reference_result=None,
         show_redispatch=False, show_prices=False, show_infeasibility=False, show_curtailment=False, 
         timestep=None, highlight_nodes=None, highlight_zones=None,
         line_color_threshold=0,   line_loading_range=(0,100), highlight_lines=None, line_color_option=0, 
@@ -208,6 +275,11 @@ class Visualization():
                 lines, n_0_flow[timestep].rename("n_0_flow"), left_index=True, right_index=True)
             lines = pd.merge(
                 lines, n_1_flow[timestep].rename("n_1_flow"), left_index=True, right_index=True)
+            if reference_result is not None:
+                n_0_flow_ref = reference_result.n_0_flow()
+                # n_1_flow = reference_result.absolute_max_n_1_flow(sensitivity=0.2)
+                lines['n_0_flow'] = lines['n_0_flow'].sub(n_0_flow_ref[timestep].squeeze())
+                lines['n_0_flow_ref'] = n_0_flow_ref[timestep].values
         else:
             # result_data = market_result.create_averaged_result_data()
             f_dc = market_result.F_DC.pivot(
@@ -220,8 +292,14 @@ class Visualization():
             n_1_flow = market_result.absolute_max_n_1_flow(sensitivity=0.2).mean(axis=1).rename("n_1_flow").to_frame()
             lines = pd.merge(lines, n_0_flow, left_index=True, right_index=True)
             lines = pd.merge(lines, n_1_flow, left_index=True, right_index=True)
-
-
+            if reference_result is not None:
+                n_0_flow_ref = reference_result.n_0_flow().abs().mean(axis=1).rename("n_0_flow").to_frame()
+                # n_1_flow = reference_result.absolute_max_n_1_flow(sensitivity=0.2)
+                lines['n_0_flow'] = lines['n_0_flow'].sub(n_0_flow_ref.squeeze())
+                lines['n_0_flow_ref'] = n_0_flow_ref.values
+        
+            
+            
         fig = go.Figure()
         if show_redispatch and any(nodes.delta_abs > 0):
             redispatch_trace = create_redispatch_trace(nodes, redispatch_size_reference, plotly_function)
@@ -262,7 +340,7 @@ class Visualization():
 
         if line_color_option == 0:
             lines["colors"], lines["alpha"] = line_colors(
-                lines, "n_0_flow", threshold=line_color_threshold, line_loading_range=line_loading_range
+                lines, "n_0_flow", threshold=line_color_threshold, line_loading_range=line_loading_range,
             )
             datacols = ["n_0_flow", "n_1_flow"]
         elif line_color_option == 1:
@@ -488,7 +566,8 @@ class Visualization():
         else:
             return fig
 
-    def create_generation_plot(self, market_result, nodes=None, show_plot=True, filepath=None):
+    def create_generation_plot(self, result_name, results_dict, add_variables=None, nodes=None, timesteps=None, 
+                               technologies=None, show_price=None, show_plot=True, filepath=None):
         """Create interactive generation plot.
 
         The generation plot shows generation by fuel/type/technology over the model horizon for the 
@@ -507,6 +586,7 @@ class Visualization():
         filepath : pathlib.Path, str, optional
             If filepath is supplied, saves figure as .html, by default None
         """
+        market_result = results_dict[result_name]
         gen = market_result.generation()
         demand = market_result.demand()
         inf = market_result.infeasibility()
@@ -520,8 +600,17 @@ class Visualization():
 
         if gen.empty:
             return go.Figure()
-
+        
+        if add_variables is not None:
+            add_gen = add_variables_g(market_result, add_variables, nodes)
+            gen = pd.concat([gen,add_gen], ignore_index=True)
+        
+        if technologies is not None:
+            gen = gen.loc[gen.technology.isin(technologies),:]
+        
         gen = gen[["fuel", "technology", "t", "G", "g_max"]].groupby(["fuel", "technology", "t"], observed=True).sum().reset_index()
+        # if aggregate_renewables is not None:
+        #     gen.loc[]
         gen_colors = color_map(gen)
         gen = pd.merge(gen, gen_colors, on=["fuel", "technology"])
         gen.loc[:, "G"] *= 1/1000
@@ -529,12 +618,59 @@ class Visualization():
         gen["utilization"] = gen.G / gen.g_max
         sort_fuel_name = gen[["name", "utilization"]].groupby("name").mean().sort_values(by="utilization", ascending=False)
         gen = gen.sort_values(by="t", key=market_result._sort_timesteps)
-        fig = px.area(gen, x="t", y="G", color="name", 
-                      color_discrete_map=gen_colors[["color", "name"]].set_index("name").color.to_dict(),
-                      category_orders={"name": list(sort_fuel_name.index)})
+        if timesteps is None:
+            timesteps = list(gen.t.unique())
+        gen = gen.loc[gen.t.isin(timesteps)]
+            
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
+        names = sorted(list(gen.name.unique()))
+        for n in names:
+            fig.add_trace(
+                go.Scatter(x=gen.loc[gen.name==n,'t'].to_list(), y=gen.loc[gen.name==n,'G'].to_list(),
+                           stackgroup='one', name=n, marker_color=gen_colors.loc[gen_colors.name==n,'color'].iloc[0]),
+                secondary_y=False,
+            )
+    
+        if show_price is not None:
+            if isinstance(show_price, pd.DataFrame):
+                prc = show_price
+                for idx, n in enumerate(nodes):
+                    fig.add_trace(
+                        go.Scatter(x=prc.loc[(prc.t.isin(timesteps))&(prc.n==n),'t'].to_list(),
+                                   y=prc.loc[(prc.t.isin(timesteps))&(prc.n==n),'marginal'].to_list(),
+                                   name=("forecast price "+n), marker_color="#008b8b"), secondary_y=True)
+                if market_result.result_attributes['is_redispatch_result']:
+                    prc = results_dict[market_result.result_attributes['corresponding_market_result_name']].price()
+                else:
+                    prc = market_result.price()
+            elif show_price==True:
+                if market_result.result_attributes['is_redispatch_result']:
+                    prc = results_dict[market_result.result_attributes['corresponding_market_result_name']].price()
+                else:
+                    prc = market_result.price()
+            else:
+                exit()
+            if len(nodes)>3:
+                p_data = prc.loc[(prc.t.isin(timesteps))&(prc.n.isin(nodes))].groupby('t', observed=True).marginal.mean().reset_index()
+                fig.add_trace(
+                    go.Scatter(x=p_data.t.to_list(), y=p_data.marginal.to_list(), name="average price",
+                    secondary_y=True, marker_color="#BF40BF"))
+            else:
+                colors = ["#BF40BF", "#7F00FF", "#CF9FFF"]
+                for idx, n in enumerate(nodes):
+                        fig.add_trace(
+                            go.Scatter(x=prc.loc[(prc.t.isin(timesteps))&(prc.n==n),'t'].to_list(),
+                                       y=prc.loc[(prc.t.isin(timesteps))&(prc.n==n),'marginal'].to_list(),
+                                       name=("price "+n), marker_color=colors[idx]), secondary_y=True)
+
+        # fig = px.area(gen, x="t", y="G", color="name", 
+        #               color_discrete_map=gen_colors[["color", "name"]].set_index("name").color.to_dict(),
+        #               category_orders={"name": list(sort_fuel_name.index)})
 
         fig.layout.xaxis.title="Time"
-        fig.layout.yaxis.title="Generation/Load [GW]"
+        fig.update_yaxes(title_text="Generation/Load [GW]", secondary_y=False)
+        fig.update_yaxes(title_text="Price [€/MWh]", secondary_y=True)
+        # fig.layout.yaxis.title="Generation/Load [GW]"
 
         inf["infeasibility"] = inf.pos - inf.neg
         inf = inf[["t", "infeasibility"]].groupby("t").sum()/1000
@@ -554,6 +690,9 @@ class Visualization():
         demand = demand[["t", "demand_el", "D_ph", "D_es", "net_export"]].groupby("t").sum()/1000
         demand.loc[:, "demand_el"] -= (demand.net_export)
         demand = demand.loc[market_result.model_horizon, :]
+        if timesteps is not None:
+            inf = inf.loc[timesteps,:]
+            demand = demand.loc[timesteps,:]
         demand = pd.merge(demand, inf, right_index=True, left_index=True)
 
         fig.add_trace(

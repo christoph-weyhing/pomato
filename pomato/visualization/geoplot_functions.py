@@ -109,7 +109,7 @@ def add_prices_layer(nodes, prices, compress=True):
     return prices_layer, corners, plot_hight/plot_width
 
 
-def line_colors(line_data, flow_type="n_0_flow", threshold=0, line_loading_range=(0,100)):
+def line_colors(line_data, flow_type="n_0_flow", threshold=0, line_loading_range=(0,100), to_ref=False):
     """Line colors in 10 shades of RedYellowGreen palette"""
     ## 0: N-0 Flows, 1: N-1 Flows 2: Line voltage levels
     # timesteps = 't'+ "{0:0>4}".format(int(slider.value))
@@ -120,11 +120,17 @@ def line_colors(line_data, flow_type="n_0_flow", threshold=0, line_loading_range
     flows = line_data[flow_type].to_frame()
     flows.columns = ["flow"]
     flows["alpha"] = 0.8
-    condition_threshold = abs(flows.flow.values)/line_data.capacity < threshold/100
+    if 'n_0_flow_ref' in line_data.columns and to_ref:
+        condition_threshold = abs(flows.flow.values)/line_data.n_0_flow_ref < threshold/100
+    else:
+        condition_threshold = abs(flows.flow.values)/line_data.capacity < threshold/100
     flows.loc[condition_threshold, "alpha"] = 0.1
     flows["color"] = RdYlGn[0]
     for idx, loading in enumerate(steps):
-        condition = abs(flows.flow.values)/line_data.capacity > loading/100
+        if 'n_0_flow_ref' in line_data.columns and to_ref:
+            condition = abs(flows.flow.values)/line_data.n_0_flow_ref > loading/100
+        else:
+            condition = abs(flows.flow.values)/line_data.capacity > loading/100
         flows.loc[condition, "color"] = RdYlGn[idx]
     color = list(flows.color.values)
     line_alpha = list(flows.alpha.values)
